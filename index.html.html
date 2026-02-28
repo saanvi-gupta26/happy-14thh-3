@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Bubuu 💖</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Pages */
+.page {
+    display: none;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.active {
+    display: flex;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    background-color: #ff4e91;
+    color: white;
+    transition: 0.3s;
+    position: relative;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Love notes */
+.love-note {
+    position: absolute;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    animation: float 4s linear infinite;
+}
+
+/* Floating seals */
+.seal {
+    position: absolute;
+    font-size: 22px;
+    animation: floatSeal 6s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); opacity: 1; }
+    100% { transform: translateY(-200px); opacity: 0; }
+}
+
+@keyframes floatSeal {
+    0% { transform: translateY(100vh); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-100px); opacity: 0; }
+}
+
+/* Ring animation */
+.ring {
+    position: absolute;
+    font-size: 100px;
+    animation: ringPop 2s ease-out forwards;
+}
+
+@keyframes ringPop {
+    0% { transform: scale(0); opacity: 1; }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <h1>Hey Bubuu 💕</h1>
+    <p>Do you wanna see what this is? 😌</p>
+    <button onclick="nextPage(2)">Yes 💖</button>
+    <button onclick="alert('No option not available 😏 Click yes!')">No 🙈</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h1>Happy 1 Year 2 Months 💗</h1>
+    <p>28/02/2026</p>
+    <p>From your Baby Seal 🦭💌</p>
+    <button onclick="nextPage(3)">Open Your Surprise 💖</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+    <h1>My Love Letter To You 💞</h1>
+    <p style="max-width: 400px;">
+        Bubuu, these 1 year and 2 months with you have been the most beautiful chapter of my life.
+        You make my world softer, brighter, and happier every single day.
+        I’m so lucky to call you mine.  
+        Forever yours,  
+        Baby Seal 🦭💖
+    </p>
+
+    <button onclick="showSurprise()">Click for Surprise 💝</button>
+
+    <h2 style="margin-top:20px;">Will you stay forever with me? 💍</h2>
+    <button onclick="foreverYes()">YES 💖</button>
+    <button id="noBtn" onmouseover="moveNoButton()">NO 🙈</button>
+</div>
+
+<script>
+function nextPage(pageNumber) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page' + pageNumber).classList.add('active');
+}
+
+function showSurprise() {
+    alert("I love you more than words can explain, Bubuu 💖");
+}
+
+/* Ring + Hearts explosion */
+function foreverYes() {
+    const ring = document.createElement("div");
+    ring.className = "ring";
+    ring.innerText = "💍";
+    ring.style.left = "50%";
+    ring.style.top = "40%";
+    ring.style.transform = "translate(-50%, -50%)";
+    document.body.appendChild(ring);
+
+    for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.innerText = "💖";
+        heart.style.position = "absolute";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = Math.random() * window.innerHeight + "px";
+        heart.style.fontSize = "20px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 2000);
+    }
+
+    setTimeout(() => ring.remove(), 2000);
+
+    alert("Forever starts now — Baby Seal & Bubuu ♾️💞");
+}
+
+function moveNoButton() {
+    const btn = document.getElementById("noBtn");
+    btn.style.position = "absolute";
+    btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    btn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+}
+
+/* Love notes */
+const loveNotes = [
+"I love your smile 🥹",
+"Thank you for choosing me every day 💌",
+"My favorite human ever 🥹",
+"You make Baby Seal happiest 🦭💕",
+"Bubuu + Baby Seal = ♾️"
+];
+
+setInterval(() => {
+    const note = document.createElement("div");
+    note.className = "love-note";
+    note.innerText = loveNotes[Math.floor(Math.random() * loveNotes.length)];
+    note.style.left = Math.random() * window.innerWidth + "px";
+    note.style.top = Math.random() * window.innerHeight + "px";
+    document.body.appendChild(note);
+    setTimeout(() => note.remove(), 4000);
+}, 1500);
+
+/* Floating seals continuously */
+setInterval(() => {
+    const seal = document.createElement("div");
+    seal.className = "seal";
+    seal.innerText = "🦭";
+    seal.style.left = Math.random() * window.innerWidth + "px";
+    document.body.appendChild(seal);
+    setTimeout(() => seal.remove(), 6000);
+}, 2000);
+
+</script>
+
+</body>
+</html>
